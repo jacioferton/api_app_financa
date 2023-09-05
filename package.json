@@ -1,0 +1,27 @@
+{
+  "name": "api_app_financa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacioferton/api_app_financa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacioferton/api_app_financa/issues"
+  },
+  "homepage": "https://github.com/jacioferton/api_app_financa#readme",
+  "dependencies": {
+    "@types/sequelize": "^4.28.15",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0",
+    "nodemon": "^3.0.1",
+    "sequelize": "^6.32.1"
+  }
+}
