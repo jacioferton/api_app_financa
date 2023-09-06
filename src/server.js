@@ -5,6 +5,7 @@ const database = require('./Database')
 const Usuario = require('./Models/user')
 const port = 7878
 
+server.use(express.json())
 async function iniciar() {
     try {
         await database.sync({force: false})
@@ -13,7 +14,6 @@ async function iniciar() {
         console.error('Erro ao iniciar: ', error)
     }
 }
-
 
 server.listen(port, () => {
     console.log(`Server started in http://localhost:${port}/`)

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-const sequelize = new Sequelize ('moneymind', 'root.jacio', 'root.jacio', {
+const sequelize = new Sequelize ('moneymind', 'aluno.ifal', 'aluno.ifal', {
     host: 'localhost',
     dialect: 'mysql'
 })

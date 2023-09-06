@@ -27,11 +27,11 @@ const database = require('../Database')
         }
     })
 
-    User.create({
-        email: 'teste@teste',
-        senha: 'teste',
-        nome: 'Úsuario Teste',
-        termo: true
-    })
+    // User.create({
+    //     email: 'teste@teste',
+    //     senha: 'teste',
+    //     nome: 'Úsuario Teste',
+    //     termo: true
+    // })
 
     module.exports = User
