@@ -2,12 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Usuario = require('../Models/user')
 const Database = require('../Database/index')
-const IP = require('../IP')
-const { where } = require('sequelize')
 
-router.get('/ipServidor', async (req, res) => {
-    res.json(IP)
-})
 router.get('/usuarios', async (req, res) => {
     try {
         const usuarios = await Usuario.findAll()
@@ -18,10 +13,7 @@ router.get('/usuarios', async (req, res) => {
     }
 })
 router.post('/cadastrar', async (req, res) => {
-    const email = req.body.email
-    console.log(req.body)
-    const responseDB = await Usuario.findOne({ where: { email: email } })
-    console.log(responseDB);
+    const responseDB = await Usuario.findOne({ where: { email: req.body.email } })
 
     if (responseDB == null) {
         const usuario = await Usuario.create({
@@ -31,6 +23,8 @@ router.post('/cadastrar', async (req, res) => {
             termo: req.body.termo
         })
         res.json(usuario)
+    } else {
+        res.send({ "retorno": "cadastrado" })
     }
 })
 
