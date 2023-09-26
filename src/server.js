@@ -3,6 +3,7 @@ const server = express()
 const router = require('./Routes')
 const database = require('./Database')
 const Usuario = require('./Models/user')
+const {IP} = require('./IP')
 const port = 7878
 
 server.use(express.json())
@@ -16,7 +17,7 @@ async function iniciar() {
 }
 
 server.listen(port, () => {
-    console.log(`Server started in http://localhost:${port}/`)
+    console.log(`Server started in http://${IP}:${port}/`)
     server.use( router )
     iniciar()
 })
