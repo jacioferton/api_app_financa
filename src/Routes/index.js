@@ -12,6 +12,12 @@ router.get('/usuarios', async (req, res) => {
         res.status(500).json({ error: 'Erro ao obter lista de usuários' })
     }
 })
+
+router.get('/usuario/:id', async (req, res) => {
+    const usuarios = await Usuario.findAll()
+    res.json(usuarios[req.params.id - 1])
+})
+
 router.post('/cadastrar', async (req, res) => {
     const responseDB = await Usuario.findOne({ where: { email: req.body.email } })
 
@@ -35,7 +41,7 @@ router.post('/entrar', async (req, res) => {
     console.log(senha);
 
     const responseDB = await Usuario.findOne({ where: { email: email } })
-    // console.log(responseDB); 
+    console.log(responseDB);
 
     if (responseDB == null) {
         res.send({
@@ -44,9 +50,14 @@ router.post('/entrar', async (req, res) => {
     } else {
 
         if (responseDB.dataValues.senha === senha) {
-
-            return res.send({
-                "retorno": "correto"
+            const semSenha = {
+                email: responseDB.dataValues.email,
+                nome: responseDB.dataValues.nome,
+                id: responseDB.dataValues.id
+            }
+            return res.json({
+                retorno: "correto",
+                userData: semSenha
             })
         }
         res.send('Senha incorreta')
