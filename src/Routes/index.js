@@ -1,7 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const Usuario = require('../Models/user')
+const Receita = require('../Models/receita')
+const Despesa = require('../Models/despesa')
 const Database = require('../Database/index')
+
+router.post('/cadastrar/receita', async (req, res) => {
+    const receita = await Receita.create({
+        dataReceita: req.body.dataReceita,
+        categoria: req.body.categoria,
+        valor: req.body.valor
+    })
+})
 
 router.get('/usuarios', async (req, res) => {
     try {
