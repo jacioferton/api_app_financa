@@ -1,14 +1,14 @@
 const Sequelize = require('sequelize')
 const database = require('../Database')
 
-const Receita = database.define('usuario', {
+const dinheiroConta = database.define('usuario', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         unique: true
     },
-    dataReceita: {
+    data: {
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -17,13 +17,17 @@ const Receita = database.define('usuario', {
         allowNull: false,
     },
     valor: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
         allowNull: false
     },
+    tipo: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 },
 {
     timestamps: true,
-    tableName: 'receita',  
+    tableName: 'dinheiroConta',  
 })
 
-module.exports = Receita
+module.exports = dinheiroConta

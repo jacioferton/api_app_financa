@@ -1,16 +1,24 @@
 const express = require('express')
 const router = express.Router()
 const Usuario = require('../Models/user')
-const Receita = require('../Models/receita')
-const Despesa = require('../Models/despesa')
+const DinheiroConta = require('../Models/dinheiroConta')
 const Database = require('../Database/index')
 
-router.post('/cadastrar/receita', async (req, res) => {
-    const receita = await Receita.create({
-        dataReceita: req.body.dataReceita,
+router.post('/cadastrar/dinheiroconta', async (req, res) => {
+    const dinheiroConta = await DinheiroConta.create({
+        data: req.body.data,
         categoria: req.body.categoria,
-        valor: req.body.valor
+        valor: req.body.valor,
+        tipo: req.body.tipo
     })
+    res.json({ "valorSalvo" : true })
+})
+
+router.get('/usuarios/conta', async (req, res) => {
+    const conta = await DinheiroConta.findAll({
+        order: [['id', 'DESC']]
+    })
+    res.json(conta)
 })
 
 router.get('/usuarios', async (req, res) => {
@@ -23,7 +31,7 @@ router.get('/usuarios', async (req, res) => {
     }
 })
 
-router.get('/usuario/:id', async (req, res) => {
+router.get('/usuario/:id', async (req, res) => { 
     const usuarios = await Usuario.findAll()
     res.json(usuarios[req.params.id - 1])
 })
