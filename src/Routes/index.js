@@ -2,20 +2,23 @@ const express = require('express')
 const router = express.Router()
 const Usuario = require('../Models/user')
 const DinheiroConta = require('../Models/dinheiroConta')
-const Database = require('../Database/index')
 
 router.post('/cadastrar/dinheiroconta', async (req, res) => {
     const dinheiroConta = await DinheiroConta.create({
         data: req.body.data,
         categoria: req.body.categoria,
         valor: req.body.valor,
-        tipo: req.body.tipo
+        tipo: req.body.tipo,
+        userId: req.body.userId
     })
     res.json({ "valorSalvo" : true })
 })
 
-router.get('/usuarios/conta', async (req, res) => {
+router.get('/usuarios/:id/conta', async (req, res) => {
+    const id = req.params.id;
+
     const conta = await DinheiroConta.findAll({
+        where: {userId: id},
         order: [['id', 'DESC']]
     })
     res.json(conta)

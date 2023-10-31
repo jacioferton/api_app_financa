@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const database = require('../Database')
 
-const dinheiroConta = database.define('usuario', {
+const dinheiroConta = database.define('conta', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -22,6 +22,10 @@ const dinheiroConta = database.define('usuario', {
     },
     tipo: {
         type: Sequelize.STRING,
+        allowNull: false
+    },
+    userId: {
+        type: Sequelize.INTEGER,
         allowNull: false
     }
 },

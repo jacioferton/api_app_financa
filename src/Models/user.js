@@ -25,12 +25,17 @@ const User = database.define('usuario', {
         type: Sequelize.BOOLEAN,
         allowNull: false
     }
+},
+{
+    timestamps: true,
+    tableName: 'usuario',
+    
 })
 
 // User.create({
 //     email: 'teste@teste',
 //     senha: 'teste',
-//     nome: 'Úsuario Teste',
+//     nome: 'Usuario Teste',
 //     termo: true
 // })
 
